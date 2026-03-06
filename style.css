@@ -3,11 +3,11 @@
 
 :root {
     --primary-dark: #0f172a;
-    --primary-blue: #0c4a6e;
-    --ocean-teal: #0ea5e9;
-    --ocean-light: #e0f2fe;
-    --accent-gold: #fbbf24;
-    --accent-sand: #fde68a;
+    --primary-blue: #0369a1;
+    --ocean-teal: #10b981;
+    --ocean-light: #d1fae5;
+    --accent-gold: #f59e0b;
+    --accent-sand: #fef3c7;
     --text-light: #f8fafc;
     --text-dim: #94a3b8;
     --glass-bg: rgba(15, 23, 42, 0.6);
@@ -81,45 +81,29 @@ a {
 }
 
 /* --- Background & Effects --- */
-.ocean-bg {
+.wind-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    /* Sunset over the sea: Orange/Red sky -> Purple horizon -> Dark Blue sea */
-    background: linear-gradient(180deg, #ea580c 0%, #c026d3 40%, #1e1b4b 70%, #0f172a 100%);
+    background: url('wind_bg.jpg') center center/cover no-repeat;
     z-index: -2;
 }
 
-.bubble {
+.wind-bg::before {
+    content: '';
     position: absolute;
-    bottom: -100px;
-    background-color: rgba(255, 230, 150, 0.15);
-    /* Warmer bubble color */
-    border-radius: 50%;
-    animation: rise 15s infinite ease-in;
-    z-index: -1;
-}
-
-@keyframes rise {
-    0% {
-        bottom: -100px;
-        transform: translateX(0);
-    }
-
-    50% {
-        transform: translateX(100px);
-    }
-
-    100% {
-        bottom: 100vh;
-        transform: translateX(-200px);
-    }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #38bdf8 0%, #10b981 40%, #0f172a 100%);
+    z-index: -3;
 }
 
 /* Sun element for extra flair */
-.ocean-bg::after {
+.wind-bg::after {
     content: '';
     position: absolute;
     top: 10%;
@@ -129,7 +113,7 @@ a {
     height: 150px;
     background: radial-gradient(circle, #fde047 0%, rgba(253, 224, 71, 0) 70%);
     border-radius: 50%;
-    opacity: 0.6;
+    opacity: 0.8;
     z-index: -2;
     filter: blur(20px);
 }
@@ -243,11 +227,108 @@ nav {
     font-weight: 600;
     box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
     transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    cursor: pointer;
 }
 
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--ocean-teal);
+    box-shadow: none;
+    margin-left: 15px;
+}
+
+.btn-outline:hover {
+    background: rgba(14, 165, 233, 0.1);
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+}
+
+.btn-sm {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+}
+
+/* --- Hero Stats --- */
+.hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+}
+
+/* --- Portfolio --- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.portfolio-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.portfolio-icon {
+    margin-bottom: 20px;
+}
+
+.portfolio-content h3 {
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.portfolio-content p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+}
+
+.portfolio-tags {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    color: var(--accent-sand);
 }
 
 .hero-img-container {
@@ -477,27 +558,124 @@ section {
 }
 
 /* --- Skills --- */
-.skills-container {
+/* --- Skills Infographic --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.skill-category h3 {
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 10px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-.skill-tag {
-    background: rgba(14, 165, 233, 0.1);
-    border: 1px solid var(--ocean-teal);
-    color: var(--ocean-light);
-    padding: 8px 16px;
-    border-radius: 20px;
+.skill-bar-item {
+    margin-bottom: 20px;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
     font-weight: 500;
-    transition: all 0.3s;
 }
 
-.skill-tag:hover {
+.progress-bg {
+    background: rgba(255, 255, 255, 0.1);
+    height: 12px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--ocean-teal), var(--accent-gold));
+    height: 100%;
+    border-radius: 6px;
+    width: 0%;
+    /* Start at 0 for animation */
+    animation: fillBar 1.5s ease-out forwards;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(45deg,
+            rgba(255, 255, 255, 0.2) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.2) 75%,
+            transparent 75%,
+            transparent);
+    background-size: 20px 20px;
+    animation: moveStripe 1s linear infinite;
+}
+
+@keyframes fillBar {
+    to {
+        width: var(--target-width);
+    }
+
+    /* Requires JS to set variable or just let HTML style handle it if we remove this animation and use transition, but here we use width in inline style so keyframe needs to be generic or handled by transition. Let's use simple transition and width. */
+}
+
+/* Actually, simpler animation approach for pure CSS without JS for width vars: */
+@keyframes moveStripe {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 20px 20px;
+    }
+}
+
+/* Override previous timeline styles for better look */
+.timeline::after {
     background: var(--ocean-teal);
-    color: white;
-    transform: scale(1.05);
+    width: 6px;
+    box-shadow: 0 0 10px var(--ocean-teal);
+}
+
+.timeline-item::after {
+    background: var(--primary-dark);
+    border: 4px solid var(--accent-gold);
+    box-shadow: 0 0 10px var(--accent-gold);
+    width: 24px;
+    height: 24px;
+    right: -13px;
+    /* Adjust for larger size */
+}
+
+.left::after {
+    right: -13px;
+}
+
+.right::after {
+    left: -11px;
+}
+
+.badge {
+    background: var(--accent-gold);
+    color: var(--primary-dark);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 5px;
 }
 
 /* --- Contact --- */
