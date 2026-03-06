@@ -10,11 +10,55 @@
 </head>
 
 <body>
-  <div class="wind-bg">
-    <!-- Overlay for better text readability -->
-    <div
-      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.6); z-index: -1;">
+  <!-- Animated Background -->
+  <div class="animated-wind-bg">
+    <div class="sun"></div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+
+    <!-- Background Hill & Turbine -->
+    <div class="hill-layer-2"></div>
+    <div class="turbine turbine-3">
+      <div class="tower"></div>
+      <div class="blades-container" style="animation-duration: 9s;">
+        <div class="blade blade-1"></div>
+        <div class="blade blade-2"></div>
+        <div class="blade blade-3"></div>
+        <div class="hub"></div>
+      </div>
     </div>
+    <div class="turbine turbine-2">
+      <div class="tower"></div>
+      <div class="blades-container" style="animation-duration: 5s;">
+        <div class="blade blade-1"></div>
+        <div class="blade blade-2"></div>
+        <div class="blade blade-3"></div>
+        <div class="hub"></div>
+      </div>
+    </div>
+
+    <!-- Foreground Hill & Turbine -->
+    <div class="hill-layer-1"></div>
+    <div class="turbine turbine-1">
+      <div class="tower"></div>
+      <div class="blades-container" style="animation-duration: 6s;">
+        <div class="blade blade-1"></div>
+        <div class="blade blade-2"></div>
+        <div class="blade blade-3"></div>
+        <div class="hub"></div>
+      </div>
+    </div>
+
+    <!-- Wind Effects -->
+    <div class="wind-line wind-1"></div>
+    <div class="wind-line wind-2"></div>
+    <div class="wind-line wind-3"></div>
+    <div class="wind-line wind-4"></div>
+  </div>
+  <!-- Dark overlay for text readability -->
+  <div
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.65); z-index: -1;">
   </div>
 
   <nav>

@@ -81,41 +81,318 @@ a {
 }
 
 /* --- Background & Effects --- */
-.wind-bg {
+.animated-wind-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background: url('wind_bg.jpg') center center/cover no-repeat;
+    background: linear-gradient(180deg, #38bdf8 0%, #7dd3fc 40%, #10b981 100%);
+    z-index: -3;
+    overflow: hidden;
+}
+
+/* Sun */
+.sun {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #fde047;
+    border-radius: 50%;
+    top: 10%;
+    right: 15%;
+    box-shadow: 0 0 40px #fef08a, 0 0 80px #fef08a;
+}
+
+/* Clouds */
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+    opacity: 0.8;
+    animation: float-cloud linear infinite;
+    filter: blur(1px);
+}
+
+.cloud::before,
+.cloud::after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+}
+
+.cloud-1 {
+    width: 120px;
+    height: 40px;
+    top: 15%;
+    left: -150px;
+    animation-duration: 35s;
+}
+
+.cloud-1::before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 20px;
+}
+
+.cloud-1::after {
+    width: 40px;
+    height: 40px;
+    top: -20px;
+    left: 70px;
+}
+
+.cloud-2 {
+    width: 90px;
+    height: 30px;
+    top: 25%;
+    left: -150px;
+    animation-duration: 25s;
+    animation-delay: -10s;
+    opacity: 0.6;
+    transform: scale(0.8);
+}
+
+.cloud-2::before {
+    width: 45px;
+    height: 45px;
+    top: -20px;
+    left: 15px;
+}
+
+.cloud-2::after {
+    width: 30px;
+    height: 30px;
+    top: -15px;
+    left: 50px;
+}
+
+.cloud-3 {
+    width: 150px;
+    height: 50px;
+    top: 8%;
+    left: -200px;
+    animation-duration: 45s;
+    animation-delay: -20s;
+}
+
+.cloud-3::before {
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    left: 25px;
+}
+
+.cloud-3::after {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 85px;
+}
+
+/* Hills */
+.hill-layer-1,
+.hill-layer-2 {
+    position: absolute;
+    bottom: 0;
+    width: 150%;
+    left: -25%;
+}
+
+.hill-layer-2 {
+    height: 25vh;
+    background: #059669;
+    border-radius: 50% 50% 0 0;
     z-index: -2;
 }
 
-.wind-bg::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, #38bdf8 0%, #10b981 40%, #0f172a 100%);
-    z-index: -3;
+.hill-layer-1 {
+    height: 15vh;
+    background: #047857;
+    border-radius: 40% 60% 0 0;
+    z-index: -1;
 }
 
-/* Sun element for extra flair */
-.wind-bg::after {
-    content: '';
+/* Turbines */
+.turbine {
     position: absolute;
-    top: 10%;
+    bottom: 0;
+}
+
+.turbine-1 {
+    left: 20%;
+    transform: scale(1);
+    bottom: 10vh;
+    z-index: 0;
+}
+
+.turbine-2 {
+    left: 70%;
+    transform: scale(0.7);
+    bottom: 18vh;
+    z-index: -1;
+}
+
+.turbine-3 {
+    left: 45%;
+    transform: scale(0.5);
+    bottom: 22vh;
+    z-index: -2;
+}
+
+.tower {
+    width: 6px;
+    height: 160px;
+    background: linear-gradient(to right, #e2e8f0, #94a3b8);
+    position: absolute;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 150px;
-    height: 150px;
-    background: radial-gradient(circle, #fde047 0%, rgba(253, 224, 71, 0) 70%);
+    border-radius: 3px 3px 0 0;
+}
+
+.blades-container {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    animation: spin linear infinite;
+}
+
+.blade {
+    position: absolute;
+    width: 6px;
+    height: 85px;
+    bottom: 0;
+    left: -3px;
+    background: linear-gradient(to top, #cbd5e1, #ffffff);
+    border-radius: 50% 50% 2px 2px;
+    transform-origin: bottom center;
+}
+
+.blade-1 {
+    transform: rotate(0deg) translateY(-100%);
+    transform-origin: bottom center;
+}
+
+.blade-2 {
+    transform: rotate(120deg) translateY(-100%);
+    transform-origin: bottom center;
+}
+
+.blade-3 {
+    transform: rotate(240deg) translateY(-100%);
+    transform-origin: bottom center;
+}
+
+/* Adjusted Blade logic to spin from exact center */
+.blade-1 {
+    transform: rotate(0deg);
+    bottom: 50%;
+}
+
+.blade-2 {
+    transform: rotate(120deg);
+    bottom: 50%;
+}
+
+.blade-3 {
+    transform: rotate(240deg);
+    bottom: 50%;
+}
+
+.hub {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #cbd5e1;
     border-radius: 50%;
-    opacity: 0.8;
-    z-index: -2;
-    filter: blur(20px);
+    top: -7px;
+    left: -7px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Wind Lines */
+.wind-line {
+    position: absolute;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 2px;
+    animation: blow-wind linear infinite;
+}
+
+.wind-1 {
+    top: 30%;
+    left: -200px;
+    width: 100px;
+    animation-duration: 4s;
+    animation-delay: 1s;
+}
+
+.wind-2 {
+    top: 50%;
+    left: -200px;
+    width: 150px;
+    animation-duration: 5s;
+    animation-delay: 2.5s;
+}
+
+.wind-3 {
+    top: 70%;
+    left: -200px;
+    width: 80px;
+    animation-duration: 3s;
+    animation-delay: 0.5s;
+}
+
+.wind-4 {
+    top: 20%;
+    left: -200px;
+    width: 200px;
+    animation-duration: 6s;
+    animation-delay: 4s;
+    opacity: 0.2;
+}
+
+/* Keyframes */
+@keyframes spin {
+    to {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+
+@keyframes float-cloud {
+    from {
+        left: -200px;
+    }
+
+    to {
+        left: 110vw;
+    }
+}
+
+@keyframes blow-wind {
+    0% {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(110vw);
+        opacity: 0;
+    }
 }
 
 /* --- Navigation --- */
